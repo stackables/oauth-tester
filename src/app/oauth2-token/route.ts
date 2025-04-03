@@ -6,7 +6,7 @@ function base64ToObject(value: string) {
     return JSON.parse(atob(value));
 }
 
-async function jwtSign(data: Record<string, any>, secretPlaintext: string) {
+async function jwtSign(data: Record<string, unknown>, secretPlaintext: string) {
     const secret = new TextEncoder().encode(secretPlaintext);
 
     const jwt = await new jose.SignJWT(data)

@@ -54,7 +54,7 @@ function getTestUsers(start: number, stable: number, unstable: number) {
   return users;
 }
 
-function objectToBase64(value: Record<string, any>) {
+function objectToBase64(value: Record<string, unknown>) {
   return btoa(JSON.stringify(value));
 }
 
@@ -62,7 +62,7 @@ function Oauth2Auth() {
   const searchParams = useSearchParams();
   const state = searchParams.get("state");
   const [pin, setPin] = useLocalStorage("pin", 0);
-  const [dialog, setDialog] = useState<Record<string, any> | null>(null);
+  const [dialog, setDialog] = useState<Record<string, unknown> | null>(null);
   
 
   const params = [];
@@ -125,10 +125,7 @@ function Oauth2Auth() {
       <Dialog open={dialog !== null} onOpenChange={(open) => setDialog(open === false ? null : dialog)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
-            </DialogDescription>
+            <DialogTitle>User Details</DialogTitle>
           </DialogHeader>
           <div>
             <pre style={{ padding: 10 }}>{JSON.stringify(dialog, null, 2)}</pre>
