@@ -7,7 +7,7 @@ import { Faker, en } from "@faker-js/faker";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { InfoIcon } from 'lucide-react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useLocalStorage } from 'usehooks-ts'
 import dynamic from 'next/dynamic'
 
