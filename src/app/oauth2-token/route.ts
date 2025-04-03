@@ -26,3 +26,5 @@ export async function POST(request: Request) {
         id_token: await jwtSign(data, "unknown-to-others"),
     });
 }
+
+export const runtime = 'edge';

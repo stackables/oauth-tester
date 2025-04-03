@@ -20,3 +20,5 @@ export async function POST(request: Request) {
 
     return Response.json(await jwtVerify(token, "unknown-to-others"));
 }
+
+export const runtime = 'edge';
