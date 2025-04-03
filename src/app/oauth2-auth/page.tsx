@@ -77,8 +77,8 @@ function Oauth2Auth() {
   }, [pin]);
 
   return (
-    <div>
-      <h1>
+    <div className="grid grid-cols-1 gap-2 p-4">
+      <h1 className="text-2xl font-bold">
         User Picker
       </h1>
       <Input
@@ -89,13 +89,13 @@ function Oauth2Auth() {
         }}
       />
       <Separator />
-      <div>
-        <Button asChild>
+      <div className="flex flex-row gap-2">
+        <Button asChild variant={"destructive"} className="flex-grow">
           <a href={`${searchParams?.get("redirect_uri")}?error=access_denied&state=${state}`}>Decline</a>
         </Button>
         <Button
-
-
+        className="flex-grow"
+        variant={"default"}
           onClick={() => {
             setPin(0);
           }}
@@ -105,21 +105,22 @@ function Oauth2Auth() {
       </div>
       <Separator />
       {users.map((user, i) => (
-        <div key={user.sub}>
-          <div>
+        <div key={user.sub} className="flex flex-row gap-2">
             <Button
               key={user.sub}
               data-testid={`test-user-${i}`}
               asChild
+              variant={"outline"}
+              className="flex-grow"
             >
               <a href={`${searchParams?.get("redirect_uri")}?code=${objectToBase64(user)}&state=${state}`}>{user.name}</a>
             </Button>
             <Button
               onClick={() => setDialog(user)}
+              variant={"ghost"}
             >
-              <InfoIcon color="info" />
+              <InfoIcon  />
             </Button>
-          </div>
         </div>
       ))}
       <Dialog open={dialog !== null} onOpenChange={(open) => setDialog(open === false ? null : dialog)}>
