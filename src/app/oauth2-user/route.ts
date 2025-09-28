@@ -1,24 +1,23 @@
 import assert from "assert";
 import * as jose from "jose";
 
-async function jwtVerify(
-    token: string,
-    secretPlaintext: string,
-) {
-    const secret = new TextEncoder().encode(secretPlaintext);
+async function jwtVerify(token: string, secretPlaintext: string) {
+  const secret = new TextEncoder().encode(secretPlaintext);
 
-    const { payload } = await jose.jwtVerify(token, secret);
-    return payload;
+  const { payload } = await jose.jwtVerify(token, secret);
+  return payload;
 }
 
+export async function GET(request: Request) {
+  const user = request.headers.get("authorization");
 
-export async function POST(request: Request) {
-    const user = request.headers.get("Authorization");
-    assert(user, "Authorization header is required");
+  if (!user) {
+    return new Response("Unauthorized", { status: 401 });
+  }
 
-    const [,token] = user.split(" ");
+  const [, token] = user.split(" ");
 
-    return Response.json(await jwtVerify(token, "unknown-to-others"));
+  return Response.json(await jwtVerify(token, "unknown-to-others"));
 }
 
-export const runtime = 'edge';
+export const runtime = "edge";

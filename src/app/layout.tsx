@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Oauth tester",
-  description: "Dummy oauth tester for local app development",
+  title: "Fake Identity Provider",
+  description: "A simple OAuth2 identity provider for testing purposes.",
 };
-
 
 export default function Layout({
   children,
@@ -14,9 +13,7 @@ export default function Layout({
 }>) {
   return (
     <html lang="en">
-      <body className="h-screen">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
