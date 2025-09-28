@@ -1,4 +1,3 @@
-import assert from "assert";
 import * as jose from "jose";
 
 async function jwtVerify(token: string, secretPlaintext: string) {

@@ -1,9 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -59,8 +57,8 @@ async function fetchUserInfo(token: string) {
 export default function Route() {
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
-  const [token, setToken] = useState<any>();
-  const [info, setInfo] = useState<any>();
+  const [token, setToken] = useState<Record<string, unknown>>();
+  const [info, setInfo] = useState<Record<string, unknown>>();
 
   async function onCode(code: string) {
     try {
@@ -88,8 +86,8 @@ export default function Route() {
         Use me to easily create automation users and test your application
         locally. Once the authorization screen is loaded you have an option to
         use a randomly generated username or you can enter a numeric PIN that
-        will "seed" the username generation giving you a stable selection of
-        "random" usernames.
+        will &quot;seed&quot; the username generation giving you a stable
+        selection of &quot;random&quot; usernames.
       </p>
       <div className="pt-16 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
         <Card className="w-full min-w-sm h-fit">
