@@ -177,7 +177,14 @@ export default function Route() {
       </main>
       <footer className="mt-auto border-t">
         <div className="container mx-auto p-4 text-center text-sm text-muted-foreground">
-          Made with ❤️ AA
+          Made with ❤️{" "}
+          <a
+            href="https://bsky.app/profile/aarnelaur.bsky.social"
+            target="_blank"
+            className="text-blue-500 hover:underline"
+          >
+            AA
+          </a>
         </div>
       </footer>
     </>
