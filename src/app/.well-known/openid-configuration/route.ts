@@ -10,3 +10,5 @@ export async function GET() {
     id_token_signing_alg_values_supported: ["RS256"],
   });
 }
+
+export const runtime = 'edge';
