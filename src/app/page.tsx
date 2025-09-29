@@ -91,13 +91,13 @@ export default function Route() {
           selection of &quot;random&quot; usernames.
         </p>
         <p className="text-muted-foreground pt-6">
-          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-          EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-          MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-          IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-          CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-          TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-          SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+          THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY
+          KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+          OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+          NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+          LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+          OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+          WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </p>
         <div className="pt-16 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
           <Card className="w-full min-w-sm h-fit">
@@ -117,50 +117,53 @@ export default function Route() {
               <p>{domain}/oauth2-user</p>
             </CardContent>
           </Card>
-          <Accordion
-            type="single"
-            collapsible
-            className="w-full"
-            defaultValue={code ? "token" : "start"}
-          >
-            <AccordionItem value="start">
-              <AccordionTrigger>
-                Step 1. Redirect user to authorization url
-              </AccordionTrigger>
-              <AccordionContent className="flex flex-col gap-4 text-balance">
-                <p>
-                  <a
-                    className="text-blue-500 hover:underline"
-                    href={`${domain}/oauth2-auth?response_type=code&client_id=my-client-id&redirect_uri=${domain}`}
-                  >
-                    {`${domain}/oauth2-auth?response_type=code&client_id=my-client-id&redirect_uri=${domain}`}
-                  </a>
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="token" disabled={!code}>
-              <AccordionTrigger>
-                Step 2. Exchange authorization code for access token
-              </AccordionTrigger>
-              <AccordionContent className="flex flex-col gap-4 text-balance">
-                <p>Response from token endpoint:</p>
-                <pre className="wrap-anywhere whitespace-pre-wrap">
-                  {JSON.stringify(token, null, 2) || "Fetching..."}
-                </pre>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="info" disabled={!code}>
-              <AccordionTrigger>
-                Step 3. Access userinfo api (optional)
-              </AccordionTrigger>
-              <AccordionContent className="flex flex-col gap-4 text-balance">
-                <p>Response from userinfo endpoint:</p>
-                <pre className="wrap-anywhere whitespace-pre-wrap">
-                  {JSON.stringify(info, null, 2) || "Fetching..."}
-                </pre>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <div>
+            <h2 className="text-2xl font-bold">Try it here!</h2>
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full"
+              defaultValue={code ? "token" : "start"}
+            >
+              <AccordionItem value="start">
+                <AccordionTrigger>
+                  Step 1. Redirect user to authorization url
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col gap-4 text-balance">
+                  <p>
+                    <a
+                      className="text-blue-500 hover:underline"
+                      href={`${domain}/oauth2-auth?response_type=code&client_id=my-client-id&redirect_uri=${domain}`}
+                    >
+                      {`${domain}/oauth2-auth?response_type=code&client_id=my-client-id&redirect_uri=${domain}`}
+                    </a>
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="token" disabled={!code}>
+                <AccordionTrigger>
+                  Step 2. Exchange authorization code for access token
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col gap-4 text-balance">
+                  <p>Response from token endpoint:</p>
+                  <pre className="wrap-anywhere whitespace-pre-wrap">
+                    {JSON.stringify(token, null, 2) || "Fetching..."}
+                  </pre>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="info" disabled={!code}>
+                <AccordionTrigger>
+                  Step 3. Access userinfo api (optional)
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col gap-4 text-balance">
+                  <p>Response from userinfo endpoint:</p>
+                  <pre className="wrap-anywhere whitespace-pre-wrap">
+                    {JSON.stringify(info, null, 2) || "Fetching..."}
+                  </pre>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
         </div>
       </main>
       <footer className="mt-auto border-t">
