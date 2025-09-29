@@ -14,6 +14,9 @@ export default function Layout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
+      </head>
       <body>
         <Suspense>{children}</Suspense>
       </body>
