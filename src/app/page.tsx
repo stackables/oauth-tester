@@ -100,7 +100,7 @@ export default function Route() {
           WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </p>
         <div className="pt-16 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
-          <Card className="w-full min-w-sm h-fit">
+          <Card className="w-full h-fit">
             <CardHeader>
               <CardTitle>Configure Your Application</CardTitle>
               <CardDescription>
