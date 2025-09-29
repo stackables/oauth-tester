@@ -1,2 +1,2 @@
-/
-LLMS.txt
+https://oauth.sdk42.com/
+https://oauth.sdk42.com/LLMS.txt
