@@ -26,9 +26,9 @@ Usually teams commit this configuration to source control to keep the local dev 
 
 ## Endpoints
 
-* **Authorization Endpoint:** `https://oauth.sdk42.com/oauth2-auth`
-* **Token Endpoint:** `https://oauth.sdk42.com/oauth2-token`
-* **User Info Endpoint:** `https://oauth.sdk42.com/oauth2-user`
+* **Authorization Endpoint:** `https://oauth.sdk42.com/authorize`
+* **Token Endpoint:** `https://oauth.sdk42.com/token`
+* **User Info Endpoint:** `https://oauth.sdk42.com/userinfo`
 
 ---
 

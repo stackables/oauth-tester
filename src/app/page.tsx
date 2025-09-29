@@ -24,7 +24,7 @@ async function fetchToken(code: string) {
   params.append("grant_type", "authorization_code");
   params.append("code", code);
 
-  const response = await fetch(domain + "/oauth2-token", {
+  const response = await fetch(domain + "/token", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -40,7 +40,7 @@ async function fetchToken(code: string) {
 }
 
 async function fetchUserInfo(token: string) {
-  const response = await fetch(domain + "/oauth2-user", {
+  const response = await fetch(domain + "/userinfo", {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -121,11 +121,11 @@ export default function Route() {
 
               <p className="text-xl font-bold pt-6">Manual Configuration</p>
               <span className="font-semibold">Authorization Endpoint:</span>
-              <p>{domain}/oauth2-auth</p>
+              <p>{domain}/authorize</p>
               <span className="font-semibold">Token Endpoint:</span>
-              <p>{domain}/oauth2-token</p>
+              <p>{domain}/token</p>
               <span className="font-semibold">User Info Endpoint:</span>
-              <p>{domain}/oauth2-user</p>
+              <p>{domain}/userinfo</p>
             </CardContent>
           </Card>
           <div>
@@ -144,9 +144,9 @@ export default function Route() {
                   <p>
                     <a
                       className="text-blue-500 hover:underline"
-                      href={`${domain}/oauth2-auth?response_type=code&client_id=my-client-id&redirect_uri=${domain}`}
+                      href={`${domain}/authorize?response_type=code&client_id=my-client-id&redirect_uri=${domain}`}
                     >
-                      {`${domain}/oauth2-auth?response_type=code&client_id=my-client-id&redirect_uri=${domain}`}
+                      {`${domain}/authorize?response_type=code&client_id=my-client-id&redirect_uri=${domain}`}
                     </a>
                   </p>
                 </AccordionContent>
