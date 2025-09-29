@@ -1,9 +1,17 @@
+import { publicKey } from "@/lib/jwk";
 import * as jose from "jose";
 
-async function jwtVerify(token: string, secretPlaintext: string) {
-  const secret = new TextEncoder().encode(secretPlaintext);
+const JWKS = jose.createLocalJWKSet({
+  keys: [
+    {
+      kid: "f1",
+      ...publicKey,
+    },
+  ],
+});
 
-  const { payload } = await jose.jwtVerify(token, secret);
+async function jwtVerify(token: string) {
+  const { payload } = await jose.jwtVerify(token, JWKS);
   return payload;
 }
 
@@ -16,7 +24,7 @@ export async function GET(request: Request) {
 
   const [, token] = user.split(" ");
 
-  return Response.json(await jwtVerify(token, "unknown-to-others"));
+  return Response.json(await jwtVerify(token));
 }
 
 export const runtime = "edge";

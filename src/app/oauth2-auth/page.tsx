@@ -28,7 +28,7 @@ function getTestUsers(start: number, stable: number, unstable: number) {
     const name = `${firstName} ${lastName}`;
     const profilePicture = faker.image.avatarGitHub();
     return {
-      iss: faker.internet.domainName(),
+      iss: "https://oauth.sdk42.com/",
       sub,
       iat: faker.date.recent().getTime() / 1000,
       exp: faker.date.future().getTime() / 1000,

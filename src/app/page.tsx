@@ -109,6 +109,17 @@ export default function Route() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
+              <p>
+                OpenID Connect Discovery Document at{" "}
+                <a
+                  href={`${domain}/.well-known/openid-configuration`}
+                  className="text-blue-500 hover:underline"
+                >
+                  /.well-known/openid-configuration
+                </a>
+              </p>
+
+              <p className="text-xl font-bold pt-6">Manual Configuration</p>
               <span className="font-semibold">Authorization Endpoint:</span>
               <p>{domain}/oauth2-auth</p>
               <span className="font-semibold">Token Endpoint:</span>
@@ -152,9 +163,7 @@ export default function Route() {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="info" disabled={!code}>
-                <AccordionTrigger>
-                  Step 3. Access userinfo api (optional)
-                </AccordionTrigger>
+                <AccordionTrigger>Step 3. Access userinfo api</AccordionTrigger>
                 <AccordionContent className="flex flex-col gap-4 text-balance">
                   <p>Response from userinfo endpoint:</p>
                   <pre className="wrap-anywhere whitespace-pre-wrap">
