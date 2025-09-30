@@ -102,7 +102,7 @@ function Demo() {
               "&scope=openid profile email"
             }
           >
-            Authenticate
+            Pick user
           </a>
         </Button>
       </div>
