@@ -70,7 +70,10 @@ function Demo() {
     if (token && !info) {
       fetchUserInfo(token.id_token)
         .then((userInfo) => setInfo(userInfo))
-        .catch((error) => console.error("Error:", error));
+        .catch((error) => {
+          console.error("Error:", error);
+          setToken(null);
+        });
     }
   }, [info, token]);
 
