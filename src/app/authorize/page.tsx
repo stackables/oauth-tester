@@ -38,6 +38,7 @@ function getTestUsers(start: number, stable: number, unstable: number) {
       family_name: lastName,
       profile_picture: profilePicture,
       stable: stable,
+      pin: start,
     };
   };
 

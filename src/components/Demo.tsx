@@ -60,6 +60,7 @@ function Demo() {
       fetchToken(code)
         .then((tokenData) => {
           setToken(tokenData);
+          setInfo(undefined);
           router.replace("/", undefined);
         })
         .catch((error) => console.error("Error:", error));
@@ -125,10 +126,26 @@ function Demo() {
       <span>{info?.email}</span>
       <span>
         {info?.stable
-          ? "user created based on pin"
-          : "user is randomly created"}
+          ? `user created based on pin (use ${info.pin} to log in again)`
+          : "user is randomly created, use pin to create stable users"}
       </span>
-      <Button onClick={() => setToken(null)}>Logout</Button>
+      <div className="flex gap-2">
+        <Button onClick={() => setToken(null)} variant={"outline"}>
+          Logout
+        </Button>
+        <Button asChild>
+          <a
+            href={
+              domain +
+              "/authorize?response_type=code&client_id=demo&redirect_uri=" +
+              encodeURIComponent(domain) +
+              "&scope=openid profile email"
+            }
+          >
+            Pick new user
+          </a>
+        </Button>
+      </div>
     </div>
   );
 }
