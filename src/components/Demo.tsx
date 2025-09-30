@@ -85,8 +85,10 @@ function Demo() {
   if (!token) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
-        <h1 className="text-3xl font-bold mb-4">Not logged in</h1>
-        <p className="mb-4">Start the auth flow to select your username.</p>
+        <h1 className="text-3xl font-bold mb-4">Try it here</h1>
+        <p className="mb-4">
+          Start the mock login flow to select your username.
+        </p>
         <Button asChild>
           <a
             href={
@@ -106,7 +108,7 @@ function Demo() {
   if (token && !info) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
-        <h1 className="text-3xl font-bold mb-4">Fetching user info...</h1>
+        <h1 className="text-3xl font-bold mb-4">Getting user info...</h1>
       </div>
     );
   }
