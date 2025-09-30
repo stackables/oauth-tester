@@ -75,7 +75,7 @@ function Demo() {
           setToken(null);
         });
     }
-  }, [info, token]);
+  }, [info, token, setToken]);
 
   if (code) {
     return (
