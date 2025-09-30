@@ -22,9 +22,12 @@ export async function GET(request: Request) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const [, token] = user.split(" ");
-
-  return Response.json(await jwtVerify(token));
+  try {
+    const [, token] = user.split(" ");
+    return Response.json(await jwtVerify(token));
+  } catch {
+    return new Response("Unauthorized", { status: 401 });
+  }
 }
 
 export const runtime = "edge";
