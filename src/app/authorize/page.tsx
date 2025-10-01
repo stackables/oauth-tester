@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Faker, en } from "@faker-js/faker";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { InfoIcon } from "lucide-react";
@@ -16,45 +15,7 @@ import {
 import { useLocalStorage } from "usehooks-ts";
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
-
-const faker = new Faker({ locale: [en] });
-
-function getTestUsers(start: number, stable: number, unstable: number) {
-  const generate = (stable: boolean) => {
-    const sub = faker.string.uuid();
-    const firstName = faker.person.firstName();
-    const lastName = faker.person.lastName();
-    const email = faker.internet.email({ firstName, lastName });
-    const name = `${firstName} ${lastName}`;
-    const profilePicture = faker.image.avatarGitHub();
-    return {
-      iss: "https://oauth.sdk42.com/",
-      sub,
-      iat: faker.date.recent().getTime() / 1000,
-      exp: faker.date.future().getTime() / 1000,
-      email,
-      name,
-      given_name: firstName,
-      family_name: lastName,
-      profile_picture: profilePicture,
-      stable: stable,
-      pin: start,
-    };
-  };
-
-  const users = [];
-
-  for (let i = 0; i < stable; i++) {
-    faker.seed(start + 849 + i);
-    users.push(generate(true));
-  }
-
-  // reset stable seed
-  faker.seed();
-  for (let i = 0; i < unstable; i++) users.push(generate(false));
-
-  return users;
-}
+import { getTestUsers } from "@/lib/datagen";
 
 function objectToBase64(value: Record<string, unknown>) {
   return btoa(JSON.stringify(value));

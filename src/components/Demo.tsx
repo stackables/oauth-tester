@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import dynamic from "next/dynamic";
+import { getTestUsers, jwtSign } from "@/lib/datagen";
 
 const domain =
   typeof window !== "undefined" ? window.origin : "https://oauth.sdk42.com/";
@@ -45,15 +46,33 @@ async function fetchUserInfo(token: string) {
   return response.json();
 }
 
-function Demo() {
-  const [token, setToken] = useSessionStorage<{ id_token: string } | null>(
-    "auth_demo",
-    null
-  );
+function DemoWithDefaultUser() {
+  const [token, setToken] = useState<{ id_token: string } | null>(null);
+
+  useEffect(() => {
+    const tokenData = getTestUsers(0, 0, 1);
+    jwtSign(tokenData[0]).then((jwt) => {
+      setToken({ id_token: jwt });
+    });
+  }, []);
+
+  if (!token) {
+    return null;
+  }
+
+  return <Demo defaultToken={token} />;
+}
+
+function Demo({ defaultToken }: { defaultToken: { id_token: string } | null }) {
+  const [token, setToken] = useSessionStorage<
+    { id_token: string } | false | undefined
+  >("auth_demo", undefined);
   const searchParams = useSearchParams();
   const code = searchParams?.get("code");
   const [info, setInfo] = useState<Record<string, string>>();
   const router = useRouter();
+
+  const tokenWithFallback = token === undefined ? defaultToken : token;
 
   useEffect(() => {
     if (code) {
@@ -68,15 +87,15 @@ function Demo() {
   }, [router, code, setToken]);
 
   useEffect(() => {
-    if (token && !info) {
-      fetchUserInfo(token.id_token)
+    if (tokenWithFallback && !info) {
+      fetchUserInfo(tokenWithFallback.id_token)
         .then((userInfo) => setInfo(userInfo))
         .catch((error) => {
           console.error("Error:", error);
-          setToken(null);
+          setToken(false);
         });
     }
-  }, [info, token, setToken]);
+  }, [info, tokenWithFallback, setToken]);
 
   if (code) {
     return (
@@ -86,7 +105,7 @@ function Demo() {
     );
   }
 
-  if (!token) {
+  if (!tokenWithFallback) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
         <h1 className="text-3xl font-bold mb-4">Try it here</h1>
@@ -130,7 +149,13 @@ function Demo() {
           : "user is randomly created, use pin to create stable users"}
       </span>
       <div className="flex gap-2">
-        <Button onClick={() => setToken(null)} variant={"outline"}>
+        <Button
+          onClick={() => {
+            setToken(false);
+            console.log("Logged out", token, setToken);
+          }}
+          variant={"outline"}
+        >
           Logout
         </Button>
         <Button asChild>
@@ -150,6 +175,6 @@ function Demo() {
   );
 }
 
-export default dynamic(() => Promise.resolve(Demo), {
+export default dynamic(() => Promise.resolve(DemoWithDefaultUser), {
   ssr: false,
 });
