@@ -51,7 +51,7 @@ function Demo() {
     null
   );
   const searchParams = useSearchParams();
-  const code = searchParams.get("code");
+  const code = searchParams?.get("code");
   const [info, setInfo] = useState<Record<string, string>>();
   const router = useRouter();
 
@@ -93,7 +93,7 @@ function Demo() {
         <p className="mb-4">
           Start the mock login flow to select your username.
         </p>
-        <Button asChild>
+        <Button asChild size={"lg"}>
           <a
             href={
               domain +
@@ -102,7 +102,7 @@ function Demo() {
               "&scope=openid profile email"
             }
           >
-            Pick user
+            Start
           </a>
         </Button>
       </div>

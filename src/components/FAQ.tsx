@@ -14,12 +14,10 @@ interface FaqItem {
 }
 
 interface Faq1Props {
-  heading?: string;
   items?: FaqItem[];
 }
 
 const Faq1 = ({
-  heading = "Frequently asked questions",
   items = [
     {
       id: "faq-1",

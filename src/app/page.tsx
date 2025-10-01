@@ -1,13 +1,27 @@
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 import Demo from "@/components/Demo";
-import Image from "next/image";
 import { CopyToClipboard } from "@/components/CopyToClipboard";
 import { Faq1 } from "@/components/FAQ";
+import { Metadata } from "next";
+import { ShineBorder } from "@/components/ui/shine-border";
 
 const domain =
   typeof window !== "undefined" ? window.origin : "https://oauth.sdk42.com/";
+
+export const metadata: Metadata = {
+  title: "Fake OIDC Identity Provider",
+  description:
+    "Generate stable but random fake OIDC Connect users for development and testing.",
+  keywords: [
+    "OIDC",
+    "OAuth2",
+    "Identity Provider",
+    "Fake",
+    "Testing",
+    "Development",
+    "Regression",
+  ],
+};
 
 export default function Route() {
   return (
@@ -15,7 +29,7 @@ export default function Route() {
       <main className="flex flex-col gap-2">
         <div className="mx-auto container p-6">
           <h1 className="text-7xl font-semibold text-muted-foreground py-10">
-            Fake Identity Provider
+            Fake OIDC Identity Provider
           </h1>
           <p className="text-lg">
             Use me instead of your real identity provider (Google or Facebook
@@ -57,7 +71,8 @@ export default function Route() {
               <p>{domain}/userinfo</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="relative">
+            <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
             <CardContent className="h-full">
               <Demo />
             </CardContent>

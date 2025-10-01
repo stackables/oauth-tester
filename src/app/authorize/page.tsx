@@ -62,7 +62,7 @@ function objectToBase64(value: Record<string, unknown>) {
 
 function Oauth2Auth() {
   const searchParams = useSearchParams();
-  const state = searchParams.get("state");
+  const state = searchParams?.get("state");
   const [pin, setPin] = useLocalStorage("pin", 0);
   const [dialog, setDialog] = useState<Record<string, unknown> | null>(null);
 
