@@ -5,8 +5,7 @@ import { Faq1 } from "@/components/FAQ";
 import { Metadata } from "next";
 import { ShineBorder } from "@/components/ui/shine-border";
 
-const domain =
-  typeof window !== "undefined" ? window.origin : "https://oauth.sdk42.com/";
+const domain = "https://oauth.sdk42.com";
 
 export const metadata: Metadata = {
   title: "Fake OIDC Identity Provider",
