@@ -20,6 +20,20 @@ interface Faq1Props {
 const Faq1 = ({
   items = [
     {
+      id: "faq-0",
+      question: "Who built this and why?",
+      answer: (
+        <>
+        <p>
+          I am Aarne, the founder of <a href="https://youropinion.is" target="_blank" className="text-blue-500 hover:underline">YourOpinion.is</a> (the best free AI native survey platform). And I built this fake identity provider to help my team and me develop and test our application more efficiently. We needed a simple way to simulate different user roles without the hassle of managing real accounts, so I created this tool to streamline our workflow and make testing easier for everyone involved.
+        </p>
+        <p>
+          We decided to open it to everyone because we believe it can be a valuable resource for other developers facing similar challenges. Also we are using it actively ourselves, so it creates no extra maintenance burden for us.
+        </p>
+        </>
+      ),
+    },
+    {
       id: "faq-1",
       question: "Why would anyone need a fake identity provider?",
       answer: (
