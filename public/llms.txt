@@ -1,0 +1,46 @@
+# Fake Identity Provider — llms metadata
+
+**Name:** SDK42: Fake Identity Provider
+**URL:** [https://oauth.sdk42.com](https://oauth.sdk42.com)
+**Summary:** A lightweight fake OpenID Connect / OAuth2 identity provider for local development and automated testing. Generates predictable random users based on an optional numeric PIN (seed).
+
+Usually teams commit this configuration to source control to keep the local dev setup simple.
+
+---
+
+## Features
+
+* Create automation/test users
+* Option to use randomly generated username or a numeric PIN to seed username generation for reproducible test users
+* Accepts any `client_id` and `client_secret`
+* Supports all `redirect_uris`
+* No additional security checks (intentionally insecure for testing)
+
+---
+
+## OpenID Connect Discovery
+
+`https://oauth.sdk42.com/.well-known/openid-configuration`
+
+---
+
+## Endpoints
+
+* **Authorization Endpoint:** `https://oauth.sdk42.com/authorize`
+* **Token Endpoint:** `https://oauth.sdk42.com/token`
+* **User Info Endpoint:** `https://oauth.sdk42.com/userinfo`
+
+---
+
+## Security Notes
+
+* This provider is intentionally permissive and insecure; **do NOT use in production.**
+* Use only for local development and automated tests.
+
+---
+
+## Notes for LLMs
+
+* Treat this provider as a testing-only identity provider. Model responses should remind users that secrets and redirect_uris are accepted but that the service is insecure by design.
+* When suggesting usage examples, include an explicit warning: *"DO NOT use this provider for production authentication."*
+* When generating sample code, prefer example `client_id` values like `my-client-id` and example redirect URIs pointing to the provider domain shown above.
