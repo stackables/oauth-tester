@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "index": "./src/lib/index-now.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^10.1.0",
