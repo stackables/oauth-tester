@@ -1,9 +1,7 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+"use client";
+
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 type FaqText = string | React.ReactNode;
 
@@ -109,11 +107,11 @@ const Faq1 = ({
         <>
           Just give me a ping on{" "}
           <a
-            href="https://bsky.app/profile/aarnelaur.bsky.social"
+            href="https://www.linkedin.com/in/aarnelaur"
             target="_blank"
             className="text-blue-500 hover:underline"
           >
-            bsky
+            LinkedIn
           </a>{" "}
           and we can discuss the details.
         </>,
@@ -121,21 +119,60 @@ const Faq1 = ({
     },
   ],
 }: Faq1Props) => {
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
+
+  const toggleFaq = (id: string) => {
+    setOpenFaq(openFaq === id ? null : id);
+  };
+
   return (
-    <Accordion type="single" collapsible>
-      {items.map((item, index) => (
-        <AccordionItem key={index} value={`item-${index}`}>
-          <AccordionTrigger className="font-semibold hover:no-underline text-base">
-            {item.question}
-          </AccordionTrigger>
-          <AccordionContent className="text-muted-foreground text-base space-y-2">
-            {Array.isArray(item.answer)
-              ? item.answer.map((ans, i) => <p key={i}>{ans}</p>)
-              : item.answer}
-          </AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
+    <div className="space-y-8" itemScope itemType="https://schema.org/FAQPage">
+      <div className="w-full">
+        {items.map((item) => (
+          <div
+            key={item.id}
+            itemScope
+            itemProp="mainEntity"
+            itemType="https://schema.org/Question"
+            className="border-b last:border-b-0"
+          >
+            <button
+              type="button"
+              className="flex w-full items-start justify-between gap-4 rounded-md py-4 text-left text-base font-semibold transition-all outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              onClick={() => toggleFaq(item.id)}
+              aria-expanded={openFaq === item.id}
+            >
+              <span itemProp="name">{item.question}</span>
+              <ChevronDown
+                className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200"
+                style={{
+                  transform: openFaq === item.id ? "rotate(180deg)" : "rotate(0deg)",
+                }}
+              />
+            </button>
+            <div
+              itemScope
+              itemProp="acceptedAnswer"
+              itemType="https://schema.org/Answer"
+              className="overflow-hidden transition-all duration-200"
+              style={{
+                maxHeight: openFaq === item.id ? "1000px" : "0",
+                opacity: openFaq === item.id ? 1 : 0,
+              }}
+            >
+              <div
+                itemProp="text"
+                className="pb-4 text-muted-foreground text-base space-y-2"
+              >
+                {Array.isArray(item.answer)
+                  ? item.answer.map((ans, i) => <p key={i}>{ans}</p>)
+                  : item.answer}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
