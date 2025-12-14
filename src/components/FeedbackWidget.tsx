@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,8 +10,133 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
+
+function LogoCheck({ className, ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      className={className}
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          id="linear0"
+          gradientUnits="userSpaceOnUse"
+          x1="0"
+          y1="0"
+          x2="1"
+          y2="0"
+          gradientTransform="matrix(20.00061,0,0,20.001343,2.002441,1.996216)"
+        >
+          <stop
+            offset="0"
+            style={{
+              stopColor: "rgb(91.764706%,36.470589%,0%)",
+              stopOpacity: 0.99609,
+            }}
+          />
+          <stop
+            offset="1"
+            style={{
+              stopColor: "rgb(100%,40.000001%,0%)",
+              stopOpacity: 0.99609,
+            }}
+          />
+        </linearGradient>
+        <linearGradient
+          id="linear1"
+          gradientUnits="userSpaceOnUse"
+          x1="0"
+          y1="0"
+          x2="1"
+          y2="0"
+          gradientTransform="matrix(14.687256,0,0,14.687622,4.750122,4.59375)"
+        >
+          <stop
+            offset="0"
+            style={{ stopColor: "rgb(0%,20%,40.000001%)", stopOpacity: 1 }}
+          />
+          <stop
+            offset="1"
+            style={{
+              stopColor: "rgb(0%,37.254903%,74.901962%)",
+              stopOpacity: 0.99609,
+            }}
+          />
+        </linearGradient>
+      </defs>
+      <g id="surface1">
+        <path
+          style={{
+            fill: "none",
+            strokeWidth: 2,
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            stroke: "url(#linear0)",
+            strokeMiterlimit: 4,
+          }}
+          d="M 21.800903 10.000122 C 22.742065 14.618408 20.3302 19.26709 16.012573 21.157471 C 11.69458 23.047485 6.643066 21.665771 3.888428 17.841431 C 1.133423 14.01709 1.423096 8.787964 4.583496 5.291016 C 7.744263 1.794434 12.917358 0.979248 16.999878 3.335083 "
+          transform="matrix(10.666667,0,0,10.666667,0,0)"
+        />
+        <path
+          style={{
+            fillRule: "nonzero",
+            fill: "url(#linear1)",
+            strokeWidth: 0.5,
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            stroke: "rgb(100%,100%,100%)",
+            strokeOpacity: 1,
+            strokeMiterlimit: 4,
+          }}
+          d="M 19.437378 11.937378 C 19.437378 15.993164 16.149536 19.281372 12.09375 19.281372 C 8.037964 19.281372 4.750122 15.993164 4.750122 11.937378 C 4.750122 7.881592 8.037964 4.59375 12.09375 4.59375 C 16.149536 4.59375 19.437378 7.881592 19.437378 11.937378 Z M 19.437378 11.937378 "
+          transform="matrix(10.666667,0,0,10.666667,0,0)"
+        />
+        <path
+          style={{
+            fill: "none",
+            strokeWidth: 2,
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            stroke: "rgb(0%,20%,40.000001%)",
+            strokeOpacity: 1,
+            strokeMiterlimit: 4,
+          }}
+          d="M 9 10.999878 L 12 13.999878 L 22.000122 4.000122 "
+          transform="matrix(10.666667,0,0,10.666667,0,0)"
+        />
+        <path
+          style={{
+            fill: "none",
+            strokeWidth: 3,
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            stroke: "rgb(100%,100%,100%)",
+            strokeOpacity: 1,
+            strokeMiterlimit: 4,
+          }}
+          d="M 9 10.999878 L 12 13.999878 L 22.000122 4.000122 "
+          transform="matrix(10.666667,0,0,10.666667,0,0)"
+        />
+        <path
+          style={{
+            fill: "none",
+            strokeWidth: 2,
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            stroke: "rgb(0%,20%,40.000001%)",
+            strokeOpacity: 1,
+            strokeMiterlimit: 4,
+          }}
+          d="M 9 10.999878 L 12 13.999878 L 22.000122 4.000122 "
+          transform="matrix(10.666667,0,0,10.666667,0,0)"
+        />
+      </g>
+    </svg>
+  );
+}
 
 const PostMessageSchema = z.discriminatedUnion("message", [
   z.object({
@@ -77,9 +202,10 @@ export function FeedbackWidget({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <Button
+      <div
         className={cn(
-          "fixed z-50 shadow-lg font-semibold tracking-wide",
+          buttonVariants({ variant: "default" }),
+          "fixed z-50 shadow-lg font-semibold tracking-wide p-0 gap-0 overflow-hidden",
           side === "right" &&
             "right-0 top-1/2 -translate-y-1/2 rotate-[-90deg] origin-bottom-right rounded-b-none rounded-t-md",
           side === "left" &&
@@ -87,27 +213,29 @@ export function FeedbackWidget({
           side === "bottom" && "bottom-0 right-8 rounded-b-none rounded-t-md",
           className
         )}
-        onClick={() => setOpen(true)}
       >
         {attribution === "button" && (
           <a
             href="https://youropinion.is"
             target="_blank"
             rel="noopener noreferrer"
-            className="mr-2 relative h-4 w-4 inline-block"
+            className="px-3 h-full flex items-center justify-center hover:bg-primary-foreground/10 transition-colors"
             onClick={(e) => e.stopPropagation()}
             title="Powered by YourOpinion.is"
           >
-            <Image
-              src="https://youropinion.is/images/logo-check.svg"
-              alt="YourOpinion.is"
-              fill
-              className="object-contain"
-            />
+            <LogoCheck className="w-4 h-4 object-contain" />
           </a>
         )}
-        Feedback
-      </Button>
+        <button
+          onClick={() => setOpen(true)}
+          className={cn(
+            "h-full flex items-center justify-center hover:bg-primary-foreground/10 transition-colors outline-none focus-visible:bg-primary-foreground/20",
+            attribution === "button" ? "pl-2 pr-4" : "px-4"
+          )}
+        >
+          Feedback
+        </button>
+      </div>
       <DialogContent className="sm:max-w-[600px] h-[80vh] p-0 overflow-hidden flex flex-col gap-0">
         <DialogHeader className="sr-only">
           <DialogTitle>Feedback Survey</DialogTitle>
@@ -131,12 +259,7 @@ export function FeedbackWidget({
               className="flex items-center gap-1 hover:opacity-80 transition-opacity"
             >
               <div className="relative h-4 w-4">
-                <Image
-                  src="https://youropinion.is/images/logo-check.svg"
-                  alt="YourOpinion.is Logo"
-                  fill
-                  className="object-contain"
-                />
+                <LogoCheck className="w-full h-full object-contain" />
               </div>
               <span className="text-xs font-semibold text-blue-600">
                 YourOpinion.is
