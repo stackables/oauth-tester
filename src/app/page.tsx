@@ -5,6 +5,7 @@ import { Faq1 } from "@/components/FAQ";
 import { USPs } from "@/components/USPs";
 import { Metadata } from "next";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { FeedbackWidget } from "@/components/FeedbackWidget";
 
 const domain = "https://oauth.sdk42.com";
 
@@ -135,6 +136,11 @@ export default function Route() {
           </a>
         </div>
       </footer>
+      <FeedbackWidget
+        side="right"
+        attribution="button"
+        src="https://youropinion.is/snap/#/1:8a98d7b5-314b-47ae-8c94-e47b47d8572f:m3tdj26xj:4ae438ef-ab40-4bf7-88d5-71fc270ce698/pFe5"
+      />
     </>
   );
 }
