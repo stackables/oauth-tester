@@ -20,6 +20,12 @@ We use it daily at YourOpinion.is, and I figured other developers face the same 
 
 ---
 
+## How it works?
+
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/b3ef6727-f7a5-4b00-b48c-b3474aa56b5f" width="400" />
+</div>
+
 ## Why?
 
 Real identity providers (Google, Facebook, GitHub) are great for production but painful for development:
