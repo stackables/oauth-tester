@@ -1,7 +1,7 @@
 "use client";
 
 import { useSessionStorage } from "@uidotdev/usehooks";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarImage } from "./ui/avatar";
@@ -70,7 +70,6 @@ function Demo({ defaultToken }: { defaultToken: { id_token: string } | null }) {
   const searchParams = useSearchParams();
   const code = searchParams?.get("code");
   const [info, setInfo] = useState<Record<string, string>>();
-  const router = useRouter();
 
   const tokenWithFallback = token === undefined ? defaultToken : token;
 
@@ -80,11 +79,11 @@ function Demo({ defaultToken }: { defaultToken: { id_token: string } | null }) {
         .then((tokenData) => {
           setToken(tokenData);
           setInfo(undefined);
-          router.replace("/", undefined);
+          window.history.replaceState({}, "", "/");
         })
         .catch((error) => console.error("Error:", error));
     }
-  }, [router, code, setToken]);
+  }, [code, setToken]);
 
   useEffect(() => {
     if (tokenWithFallback && !info) {
@@ -152,7 +151,6 @@ function Demo({ defaultToken }: { defaultToken: { id_token: string } | null }) {
         <Button
           onClick={() => {
             setToken(false);
-            console.log("Logged out", token, setToken);
           }}
           variant={"outline"}
         >

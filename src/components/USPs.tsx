@@ -2,8 +2,6 @@ import {
   UsersIcon,
   InfinityIcon,
   ZapIcon,
-  LockIcon,
-  WorkflowIcon,
   ShieldCheckIcon,
   BotIcon,
 } from "lucide-react";
@@ -13,7 +11,7 @@ export function USPs() {
   return (
     <div className="mx-auto">
       <div className="flex flex-wrap justify-center gap-4">
-        <Card className="flex-1 min-w-[250px] max-w-[500px]">
+        <Card className="flex-1 min-w-62.5 max-w-125">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <UsersIcon />
@@ -23,7 +21,7 @@ export function USPs() {
           <CardContent>Same PIN always generates the same users.</CardContent>
         </Card>
 
-        <Card className="flex-1 min-w-[250px] max-w-[500px]">
+        <Card className="flex-1 min-w-62.5 max-w-125">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <InfinityIcon />
@@ -36,7 +34,7 @@ export function USPs() {
           </CardContent>
         </Card>
 
-        <Card className="flex-1 min-w-[250px] max-w-[500px]">
+        <Card className="flex-1 min-w-62.5 max-w-125">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <ZapIcon />
@@ -48,7 +46,7 @@ export function USPs() {
           </CardContent>
         </Card>
 
-        <Card className="flex-1 min-w-[250px] max-w-[500px]">
+        <Card className="flex-1 min-w-62.5 max-w-125">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <ShieldCheckIcon />
@@ -60,7 +58,7 @@ export function USPs() {
           </CardContent>
         </Card>
 
-        <Card className="flex-1 min-w-[250px] max-w-[500px]">
+        <Card className="flex-1 min-w-62.5 max-w-125">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BotIcon />

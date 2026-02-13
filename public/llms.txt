@@ -1,20 +1,37 @@
-# Fake Identity Provider — llms metadata
+# Mock OAuth / OIDC Provider — llms metadata
 
-**Name:** SDK42: Fake Identity Provider
+**Name:** Mock OAuth / OIDC Provider (oauth.sdk42.com)
 **URL:** [https://oauth.sdk42.com](https://oauth.sdk42.com)
-**Summary:** A lightweight fake OpenID Connect / OAuth2 identity provider for local development and automated testing. Generates predictable random users based on an optional numeric PIN (seed).
+**Source Code:** [https://github.com/stackables/oauth-tester](https://github.com/stackables/oauth-tester)
+**License:** MIT
+**Summary:** A free, hosted mock OpenID Connect / OAuth 2.0 identity provider for local development, E2E testing, and CI/CD pipelines. Generates predictable, reproducible test users based on an optional numeric PIN (seed). No signup, no rate limits, no API keys required.
 
-Usually teams commit this configuration to source control to keep the local dev setup simple.
+**Also known as:** fake identity provider, mock OAuth server, test OAuth provider, fake Google login, mock social login, OAuth testing tool, fake OIDC server.
+
+Use this instead of real identity providers (Google, Facebook, GitHub, etc.) during development to avoid rate limits, security blocks, and account management overhead.
 
 ---
 
 ## Features
 
-* Create automation/test users
+* Drop-in replacement for real OAuth/OIDC providers during development
+* Create automation/test users with predictable, reproducible data
 * Option to use randomly generated username or a numeric PIN to seed username generation for reproducible test users
-* Accepts any `client_id` and `client_secret`
+* Accepts any `client_id` and `client_secret` — no app registration needed
 * Supports all `redirect_uris`
+* No rate limits, no quotas, no API keys
+* Perfect for E2E tests and CI/CD pipelines
 * No additional security checks (intentionally insecure for testing)
+
+---
+
+## Common Use Cases
+
+* Replace Google/Facebook/GitHub login in local development
+* Generate multiple test users for role-based access testing
+* Run E2E tests with Playwright, Cypress, or Selenium against OAuth flows
+* Test OAuth flows in CI/CD pipelines without real provider credentials
+* Onboard new developers without requiring OAuth app setup
 
 ---
 

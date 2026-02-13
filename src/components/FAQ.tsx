@@ -22,12 +22,28 @@ const Faq1 = ({
       question: "Who built this and why?",
       answer: (
         <>
-        <p>
-          I am Aarne, the founder of <a href="https://youropinion.is" target="_blank" className="text-blue-500 hover:underline">YourOpinion.is</a> (the best free AI native survey platform). And I built this fake identity provider to help my team and me develop and test our application more efficiently. We needed a simple way to simulate different user roles without the hassle of managing real accounts, so I created this tool to streamline our workflow and make testing easier for everyone involved.
-        </p>
-        <p>
-          We decided to open it to everyone because we believe it can be a valuable resource for other developers facing similar challenges. Also we are using it actively ourselves, so it creates no extra maintenance burden for us.
-        </p>
+          <p>
+            I am Aarne, the founder of{" "}
+            <a
+              href="https://youropinion.is"
+              target="_blank"
+              className="text-blue-500 hover:underline"
+            >
+              YourOpinion.is
+            </a>{" "}
+            (the best free AI native survey platform). And I built this fake
+            identity provider to help my team and me develop and test our
+            application more efficiently. We needed a simple way to simulate
+            different user roles without the hassle of managing real accounts,
+            so I created this tool to streamline our workflow and make testing
+            easier for everyone involved.
+          </p>
+          <p>
+            We decided to open it to everyone because we believe it can be a
+            valuable resource for other developers facing similar challenges.
+            Also we are using it actively ourselves, so it creates no extra
+            maintenance burden for us.
+          </p>
         </>
       ),
     },
@@ -94,26 +110,25 @@ const Faq1 = ({
       question: "How can I reference specific users in my testcases?",
       answer: [
         "Every user has a data-testid attribute with the format test-user-{[1-9]}",
-        "The page displays total of 9 users. If PIN is set then first 7 users will be fixed identities and last 2 users will be randomly generated on every page load",
-        'For automated tests we recommend picking `data-testid="test-user-9"` to get a random user (works as expected even if the pin was set by accident). We recommend using a testcase specific pin for creating stable users',
+        "The page displays a total of 9 users. If PIN is set then the first 7 users will be fixed identities and the last 2 users will be randomly generated on every page load.",
+        'For automated tests we recommend picking `data-testid="test-user-9"` to get a random user (works as expected even if the pin was set by accident). We recommend using a test-case-specific PIN for creating stable users.',
       ],
     },
     {
       id: "faq-4",
       question: "Where is the source, can I self-host?",
       answer: [
-        "This is a trivial app, anyone can rebuilt it in 30 minutes :) We published it because firstly we need it, and setting up the domains and hosting still takes a bit of time",
-        "Feel free to use the hosted version, but if you want to host your own (or contribute changes) then the source is available and we are happy to publish the repo on first request (MIT license as usual)",
+        "This is a trivial app, anyone can rebuild it in 30 minutes :) We published it because firstly we need it, and setting up the domains and hosting still takes a bit of time.",
         <>
-          Just give me a ping on{" "}
+          The source code is available on{" "}
           <a
-            href="https://www.linkedin.com/in/aarnelaur"
+            href="https://github.com/stackables/oauth-tester"
             target="_blank"
             className="text-blue-500 hover:underline"
           >
-            LinkedIn
+            GitHub
           </a>{" "}
-          and we can discuss the details.
+          under the MIT license. Feel free to self-host, contribute, or fork it.
         </>,
       ],
     },
@@ -146,7 +161,8 @@ const Faq1 = ({
               <ChevronDown
                 className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200"
                 style={{
-                  transform: openFaq === item.id ? "rotate(180deg)" : "rotate(0deg)",
+                  transform:
+                    openFaq === item.id ? "rotate(180deg)" : "rotate(0deg)",
                 }}
               />
             </button>

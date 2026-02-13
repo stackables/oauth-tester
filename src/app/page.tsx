@@ -3,26 +3,10 @@ import Demo from "@/components/Demo";
 import { CopyToClipboard } from "@/components/CopyToClipboard";
 import { Faq1 } from "@/components/FAQ";
 import { USPs } from "@/components/USPs";
-import { Metadata } from "next";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { FeedbackWidget } from "@/components/FeedbackWidget";
 
 const domain = "https://oauth.sdk42.com";
-
-export const metadata: Metadata = {
-  title: "Fake OIDC Identity Provider",
-  description:
-    "Generate stable but random fake OIDC Connect users for development and testing.",
-  keywords: [
-    "OIDC",
-    "OAuth2",
-    "Identity Provider",
-    "Fake",
-    "Testing",
-    "Development",
-    "Regression",
-  ],
-};
 
 export default function Route() {
   return (
@@ -30,8 +14,11 @@ export default function Route() {
       <main className="flex flex-col gap-2">
         <div className="mx-auto container p-6">
           <h1 className="text-7xl font-semibold text-muted-foreground py-10">
-            Fake Identity Provider
+            Mock OAuth &amp; OIDC Provider
           </h1>
+          <p className="text-xl text-muted-foreground">
+            A free fake identity provider for development and testing
+          </p>
           <p className="text-lg">
             Use me instead of your real identity provider (Google or Facebook
             etc.) in development and testing to easily create test users for
@@ -93,7 +80,7 @@ export default function Route() {
             <Card className="relative overflow-hidden">
               <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
               {/* Demo Banner */}
-              <div className="absolute -left-12 top-6 rotate-[-45deg] bg-red-600 text-white text-xs font-bold py-1 px-16 shadow-lg z-10">
+              <div className="absolute -left-12 top-6 -rotate-45 bg-red-600 text-white text-xs font-bold py-1 px-16 shadow-lg z-10">
                 DEMO
               </div>
               <CardContent className="h-full">
@@ -126,14 +113,7 @@ export default function Route() {
       </main>
       <footer className="mt-auto border-t">
         <div className="container mx-auto p-4 text-center text-sm text-muted-foreground">
-          Made with ❤️{" "}
-          <a
-            href="https://bsky.app/profile/aarnelaur.bsky.social"
-            target="_blank"
-            className="text-blue-500 hover:underline"
-          >
-            AA
-          </a>
+          Made with ❤️ in Europe
         </div>
       </footer>
       <FeedbackWidget

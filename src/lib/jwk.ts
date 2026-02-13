@@ -1,3 +1,13 @@
+/**
+ * INTENTIONALLY PUBLIC KEYS
+ *
+ * These RSA keys are committed to source control on purpose.
+ * This is a fake/mock identity provider for testing — there are no real
+ * secrets to protect. The private key is used to sign JWTs that contain
+ * only fake/generated user data.
+ *
+ * DO NOT use these keys for anything other than this test provider.
+ */
 export const publicKey = {
   key_ops: ["verify"],
   ext: true,

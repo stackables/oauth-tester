@@ -8,7 +8,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
@@ -207,11 +206,11 @@ export function FeedbackWidget({
           buttonVariants({ variant: "default" }),
           "fixed z-50 shadow-lg font-semibold tracking-wide p-0 gap-0 overflow-hidden",
           side === "right" &&
-            "right-0 top-1/2 -translate-y-1/2 rotate-[-90deg] origin-bottom-right rounded-b-none rounded-t-md",
+            "right-0 top-1/2 -translate-y-1/2 -rotate-90 origin-bottom-right rounded-b-none rounded-t-md",
           side === "left" &&
             "left-0 top-1/2 -translate-y-1/2 rotate-90 origin-bottom-left rounded-b-none rounded-t-md",
           side === "bottom" && "bottom-0 right-8 rounded-b-none rounded-t-md",
-          className
+          className,
         )}
       >
         {attribution === "button" && (
@@ -230,13 +229,13 @@ export function FeedbackWidget({
           onClick={() => setOpen(true)}
           className={cn(
             "h-full flex items-center justify-center hover:bg-primary-foreground/10 transition-colors outline-none focus-visible:bg-primary-foreground/20",
-            attribution === "button" ? "pl-2 pr-4" : "px-4"
+            attribution === "button" ? "pl-2 pr-4" : "px-4",
           )}
         >
           Feedback
         </button>
       </div>
-      <DialogContent className="sm:max-w-[600px] h-[80vh] p-0 overflow-hidden flex flex-col gap-0">
+      <DialogContent className="sm:max-w-150 h-[80vh] p-0 overflow-hidden flex flex-col gap-0">
         <DialogHeader className="sr-only">
           <DialogTitle>Feedback Survey</DialogTitle>
         </DialogHeader>

@@ -53,7 +53,7 @@ function Oauth2Auth() {
       />
       <Separator />
       <div className="flex flex-row gap-2">
-        <Button asChild variant={"destructive"} className="flex-grow">
+        <Button asChild variant={"destructive"} className="grow">
           <a
             href={`${searchParams?.get("redirect_uri")}?error=access_denied&state=${state}`}
           >
@@ -61,7 +61,7 @@ function Oauth2Auth() {
           </a>
         </Button>
         <Button
-          className="flex-grow"
+          className="grow"
           variant={"default"}
           onClick={() => {
             setPin(0);
@@ -75,10 +75,10 @@ function Oauth2Auth() {
         <div key={user.sub} className="flex flex-row gap-2">
           <Button
             key={user.sub}
-            data-testid={`test-user-${i}`}
+            data-testid={`test-user-${i + 1}`}
             asChild
             variant={"outline"}
-            className={cn("flex-grow", {
+            className={cn("grow", {
               "border-amber-500/50": user.stable,
             })}
           >
@@ -95,7 +95,9 @@ function Oauth2Auth() {
       ))}
       <Dialog
         open={dialog !== null}
-        onOpenChange={(open) => setDialog(open === false ? null : dialog)}
+        onOpenChange={(open: boolean) =>
+          setDialog(open === false ? null : dialog)
+        }
       >
         <DialogContent>
           <DialogHeader>

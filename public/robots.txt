@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /authorize
+
+Sitemap: https://oauth.sdk42.com/sitemap.xml
