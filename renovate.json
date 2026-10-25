@@ -1,8 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>stackables/renovate-config"],
-  "lockFileMaintenance": {
-    "description": "No packageManager pins pnpm, so pnpm-workspace.yaml's minimumReleaseAge cannot be relied on to hold a refreshed lockfile to 7 days",
-    "enabled": false
-  }
+  "extends": ["github>stackables/renovate-config"]
 }
