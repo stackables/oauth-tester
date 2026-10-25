@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .playwright-mcp/feedback-button.png
+
+# playwright
+/test-results/
+/playwright-report/
