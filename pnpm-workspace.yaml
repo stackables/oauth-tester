@@ -1,8 +1,7 @@
 minimumReleaseAge: 10080
-minimumReleaseAgeExclude:
-  # Renovate security update: next@16.4.1
-  - next@16.4.1
-  # Renovate security update: zod@4.6.6
-  - zod@4.6.6
-  # Renovate security update: @faker-js/faker@10.5.0
-  - "@faker-js/faker@10.5.0"
+# No dependency runs its install script, as under pnpm 10's default. pnpm 11 and later fail the install on a build
+# script that allowBuilds does not name, so each one is named and denied.
+allowBuilds:
+  esbuild: false
+  unrs-resolver: false
+  workerd: false
