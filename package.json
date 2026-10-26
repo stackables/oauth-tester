@@ -42,5 +42,5 @@
     "typescript": "^5.9.3",
     "vercel": "^64.5.0"
   },
-  "packageManager": "pnpm@10.34.7"
+  "packageManager": "pnpm@12.14.0"
 }
