@@ -12,5 +12,8 @@
     "run_worker_first": ["/token", "/userinfo", "/.well-known/jwks.json", "/authorize"]
   },
   // `wrangler preview`, Workers Builds' deploy command for a branch other than main, needs it, empty or not
-  "previews": {}
+  "previews": {},
+  // a URL for each branch's preview, and main's oauth-tester.<subdomain>.workers.dev beside oauth.sdk42.com
+  "preview_urls": true,
+  "workers_dev": true
 }
