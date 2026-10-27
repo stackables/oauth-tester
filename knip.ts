@@ -25,13 +25,13 @@ const config: KnipConfig = {
   ],
   // knip reports cycles as a warning by default, which never fails CI
   rules: { cycles: "error" },
-  // `pnpm start` and `pnpm dev:functions` run wrangler, a devDependency that --production leaves out
+  // `pnpm run deploy` runs wrangler, a devDependency that --production leaves out
   ignoreBinaries: production ? ["wrangler"] : [],
-  // Cloudflare Pages serves every file under functions/ as a route; nothing imports them
-  entry: ["functions/**/*.ts!"],
-  // ...and Pages reads their onRequest* exports by name, so no importer is expected
-  ignoreIssues: { "functions/**/*.ts": ["exports"] },
-  project: ["src/**/*.{ts,tsx,css}!", "functions/**/*.ts!", "e2e/**/*.ts", "*.{ts,mjs}"],
+  // the Worker, wrangler.jsonc's main
+  entry: ["api/index.ts!"],
+  // ...whose default export workerd calls, so no importer is expected
+  ignoreIssues: { "api/index.ts": ["exports"] },
+  project: ["src/**/*.{ts,tsx,css}!", "api/**/*.ts!", "e2e/**/*.ts", "*.{ts,mjs}"],
 };
 
 export default config;

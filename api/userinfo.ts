@@ -15,7 +15,7 @@ async function jwtVerify(token: string) {
   return payload;
 }
 
-export const onRequestGet: PagesFunction = async ({ request }) => {
+export async function userinfo(request: Request) {
   const user = request.headers.get("authorization");
 
   if (!user) {
@@ -28,4 +28,4 @@ export const onRequestGet: PagesFunction = async ({ request }) => {
   } catch {
     return new Response("Unauthorized", { status: 401 });
   }
-};
+}

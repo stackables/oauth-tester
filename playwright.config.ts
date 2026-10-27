@@ -1,6 +1,7 @@
 import { defineConfig } from "@playwright/test";
 
-const port = 3000;
+// `vite preview`'s
+const port = 4173;
 
 export default defineConfig({
   testDir: "e2e",
@@ -12,9 +13,9 @@ export default defineConfig({
     trace: "retain-on-failure",
   },
   webServer: {
-    // serves dist/ and the Pages Functions the way Cloudflare Pages does; build first (CI does, see
+    // serves the build, the assets and the Worker, in workerd as Cloudflare does; build first (CI does, see
     // .github/workflows/e2e.yml)
-    command: "pnpm start",
+    command: "pnpm preview",
     url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

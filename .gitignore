@@ -36,4 +36,5 @@ yarn-error.log*
 # playwright
 /test-results/
 /playwright-report/
-/.wrangler
+# wrangler's and @cloudflare/vite-plugin's, which writes one in src/, the Vite root
+.wrangler

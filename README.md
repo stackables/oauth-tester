@@ -88,12 +88,17 @@ Users have `data-testid="test-user-{1-9}"` attributes. For automated tests:
 ```bash
 pnpm install
 pnpm build
-pnpm start
+pnpm preview
 ```
 
-The app is a static [Vite](https://vite.dev) build (`dist/`) plus [Cloudflare Pages Functions](https://developers.cloudflare.com/pages/functions/) in `functions/` for `/token`, `/userinfo` and `/.well-known/jwks.json`. `pnpm start` serves both with `wrangler pages dev`. Deploy it to Cloudflare Pages with build command `pnpm build` and output directory `dist`.
+The app is a [Cloudflare Worker](https://developers.cloudflare.com/workers/) with [static assets](https://developers.cloudflare.com/workers/static-assets/), built by [Vite](https://vite.dev) and [`@cloudflare/vite-plugin`](https://developers.cloudflare.com/workers/vite-plugin/):
 
-For development, run `pnpm dev:functions` (after a build) and `pnpm dev` side by side: Vite serves the pages with hot reload and proxies the API paths to the Functions.
+- `src/` is the page, `index.html`, which renders `/` and `/authorize`
+- `api/` is the Worker, which answers `/token`, `/userinfo` and `/.well-known/jwks.json` (and serves the page at `/authorize`)
+- `public/` is served as it is: the discovery documents, `404.html` and `_headers`
+- `wrangler.jsonc` says which paths reach the Worker
+
+`pnpm dev` runs both with hot reload, the Worker in workerd as Cloudflare runs it. `pnpm run deploy` builds and deploys it with `wrangler deploy`.
 
 > **Note:** The RSA keys in `src/lib/jwk.ts` are committed intentionally — this is a mock provider with only fake data. Do not reuse these keys for anything else.
 
