@@ -10,5 +10,7 @@
     "not_found_handling": "404-page",
     // the paths api/index.ts answers; every other path is a static asset
     "run_worker_first": ["/token", "/userinfo", "/.well-known/jwks.json", "/authorize"]
-  }
+  },
+  // `wrangler preview`, Workers Builds' deploy command for a branch other than main, needs it, empty or not
+  "previews": {}
 }
