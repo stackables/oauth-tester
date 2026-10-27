@@ -23,6 +23,8 @@ const config: KnipConfig = {
     "duplicates",
     "cycles",
   ],
+  // knip reports cycles as a warning by default, which never fails CI
+  rules: { cycles: "error" },
   project: ["src/**/*.{ts,tsx,css}!", "e2e/**/*.ts", "*.{ts,mjs}"],
 };
 
