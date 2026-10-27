@@ -37,3 +37,9 @@ test("userinfo without a token is unauthorized", async ({ request }) => {
 
   expect(response.status()).toBe(401);
 });
+
+test("an unknown path answers 404, not the home page", async ({ request }) => {
+  const response = await request.get("/nonexistent");
+
+  expect(response.status()).toBe(404);
+});
