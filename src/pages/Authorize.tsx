@@ -1,9 +1,6 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { InfoIcon } from "lucide-react";
 import {
@@ -13,7 +10,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useLocalStorage } from "usehooks-ts";
-import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 import { getTestUsers } from "@/lib/datagen";
 
@@ -21,18 +17,11 @@ function objectToBase64(value: Record<string, unknown>) {
   return btoa(JSON.stringify(value));
 }
 
-function Oauth2Auth() {
-  const searchParams = useSearchParams();
-  const state = searchParams?.get("state");
+export default function Oauth2Auth() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const state = searchParams.get("state");
   const [pin, setPin] = useLocalStorage("pin", 0);
   const [dialog, setDialog] = useState<Record<string, unknown> | null>(null);
-
-  const params = [];
-  if (searchParams) {
-    for (const [key, value] of searchParams) {
-      params.push({ key, value });
-    }
-  }
 
   const users = useMemo(() => {
     const total = 9;
@@ -55,7 +44,7 @@ function Oauth2Auth() {
       <div className="flex flex-row gap-2">
         <Button asChild variant={"destructive"} className="grow">
           <a
-            href={`${searchParams?.get("redirect_uri")}?error=access_denied&state=${state}`}
+            href={`${searchParams.get("redirect_uri")}?error=access_denied&state=${state}`}
           >
             Decline
           </a>
@@ -83,7 +72,7 @@ function Oauth2Auth() {
             })}
           >
             <a
-              href={`${searchParams?.get("redirect_uri")}?code=${objectToBase64(user)}&state=${state}`}
+              href={`${searchParams.get("redirect_uri")}?code=${objectToBase64(user)}&state=${state}`}
             >
               {user.name}
             </a>
@@ -111,7 +100,3 @@ function Oauth2Auth() {
     </div>
   );
 }
-
-export default dynamic(() => Promise.resolve(Oauth2Auth), {
-  ssr: false,
-});

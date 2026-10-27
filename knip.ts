@@ -25,10 +25,13 @@ const config: KnipConfig = {
   ],
   // knip reports cycles as a warning by default, which never fails CI
   rules: { cycles: "error" },
-  // The Cloudflare Pages build runs next-on-pages, which runs `vercel build`. Its build command is set in the Cloudflare
-  // dashboard, not in the repo, so nothing here references them.
-  ignoreDependencies: ["@cloudflare/next-on-pages", "vercel"],
-  project: ["src/**/*.{ts,tsx,css}!", "e2e/**/*.ts", "*.{ts,mjs}"],
+  // `pnpm start` and `pnpm dev:functions` run wrangler, a devDependency that --production leaves out
+  ignoreBinaries: production ? ["wrangler"] : [],
+  // Cloudflare Pages serves every file under functions/ as a route; nothing imports them
+  entry: ["functions/**/*.ts!"],
+  // ...and Pages reads their onRequest* exports by name, so no importer is expected
+  ignoreIssues: { "functions/**/*.ts": ["exports"] },
+  project: ["src/**/*.{ts,tsx,css}!", "functions/**/*.ts!", "e2e/**/*.ts", "*.{ts,mjs}"],
 };
 
 export default config;

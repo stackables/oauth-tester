@@ -12,9 +12,11 @@ export default defineConfig({
     trace: "retain-on-failure",
   },
   webServer: {
-    // CI builds first (see .github/workflows/e2e.yml), so test the production server there
-    command: process.env.CI ? `pnpm start -p ${port}` : `pnpm dev -p ${port}`,
+    // serves dist/ and the Pages Functions the way Cloudflare Pages does; build first (CI does, see
+    // .github/workflows/e2e.yml)
+    command: "pnpm start",
     url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
   },
 });
