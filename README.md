@@ -87,10 +87,18 @@ Users have `data-testid="test-user-{1-9}"` attributes. For automated tests:
 
 ```bash
 pnpm install
-pnpm dev
+pnpm build
+pnpm preview
 ```
 
-The app is a standard Next.js project. Deploy anywhere that supports Next.js (Vercel, Cloudflare, Docker, etc.).
+The app is a [Cloudflare Worker](https://developers.cloudflare.com/workers/) with [static assets](https://developers.cloudflare.com/workers/static-assets/), built by [Vite](https://vite.dev) and [`@cloudflare/vite-plugin`](https://developers.cloudflare.com/workers/vite-plugin/):
+
+- `index.html` and `src/` are the page, which renders `/` and `/authorize`
+- `api/` is the Worker, which answers `/token`, `/userinfo` and `/.well-known/jwks.json` (and serves the page at `/authorize`)
+- `public/` is served as it is: the discovery documents, `404.html` and `_headers`
+- `wrangler.jsonc` says which paths reach the Worker
+
+`pnpm dev` runs both with hot reload, the Worker in workerd as Cloudflare runs it. `pnpm run deploy` builds and deploys it with `wrangler deploy`.
 
 > **Note:** The RSA keys in `src/lib/jwk.ts` are committed intentionally — this is a mock provider with only fake data. Do not reuse these keys for anything else.
 

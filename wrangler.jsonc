@@ -1,0 +1,20 @@
+// A Worker with static assets: @cloudflare/vite-plugin builds both (vite.config.ts), the assets from index.html and
+// public/. Deploy with `pnpm run deploy`.
+{
+  "name": "oauth-tester",
+  "compatibility_date": "2026-10-19",
+  "main": "./api/index.ts",
+  "assets": {
+    "binding": "ASSETS",
+    // public/404.html, with a 404 status: no page for unknown paths
+    "not_found_handling": "404-page",
+    // the paths api/index.ts answers; every other path is a static asset
+    "run_worker_first": ["/token", "/userinfo", "/.well-known/jwks.json", "/authorize"]
+  },
+  // `wrangler preview`, Workers Builds' deploy command for a branch other than main, needs it, empty or not
+  "previews": {},
+  // a URL for each branch's preview, and main's oauth-tester.<subdomain>.workers.dev beside oauth.sdk42.com, as the
+  // dashboard has them: a deploy sets both from here
+  "preview_urls": true,
+  "workers_dev": true
+}

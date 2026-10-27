@@ -1,7 +1,7 @@
 import { publicKey } from "@/lib/jwk";
 
-export async function GET() {
-  return Response.json({
+export const jwks = () =>
+  Response.json({
     keys: [
       {
         kid: "f1",
@@ -9,6 +9,3 @@ export async function GET() {
       },
     ],
   });
-}
-
-export const runtime = 'edge';

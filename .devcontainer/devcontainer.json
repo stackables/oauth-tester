@@ -1,0 +1,39 @@
+// A box of the factory (stackables-cloud/factory) is built from this file. See .devcontainer/start.sh for what runs in
+// it after every up.
+{
+    "name": "oauth-tester",
+    "image": "mcr.microsoft.com/devcontainers/base:trixie",
+    // Keep the uid common-utils sets; the CLI would otherwise rewrite it to the host user's on Linux.
+    "updateRemoteUserUID": false,
+
+    "features": {
+        // uid 1001: the owner of the factory's operator-home volume, where the person's Claude Code, Pi and gh are.
+        // Must run before the node feature, which chowns nvm to this user.
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "username": "vscode",
+            "userUid": "1001",
+            "userGid": "1001"
+        },
+        // .node-version's major; pnpm at package.json's packageManager version.
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "24.22.1",
+            "pnpmVersion": "12.14.0"
+        }
+    },
+    "overrideFeatureInstallOrder": ["ghcr.io/devcontainers/features/common-utils"],
+
+    // No logins here: the factory's manager gives every box Claude Code, Pi and gh, the person's logins while they
+    // work in it, and their history on its own volume (CLAUDE_CONFIG_DIR, PI_CODING_AGENT_DIR and GH_CONFIG_DIR).
+    "postCreateCommand": ".devcontainer/post-create.sh",
+
+    "customizations": {
+        "box": {
+            // What `box up` runs in the box after every up: the dev server, at the box's site
+            // (https://box-<name>.orb.local).
+            "up": ".devcontainer/start.sh"
+        },
+        "vscode": {
+            "extensions": ["ms-playwright.playwright", "bradlc.vscode-tailwindcss"]
+        }
+    }
+}

@@ -4,7 +4,7 @@ function base64ToObject(value: string) {
   return JSON.parse(atob(value));
 }
 
-export async function POST(request: Request) {
+export async function token(request: Request) {
   const form = await request.formData();
   const data = base64ToObject(form.get("code") as string);
 
@@ -12,5 +12,3 @@ export async function POST(request: Request) {
     id_token: await jwtSign(data),
   });
 }
-
-export const runtime = "edge";

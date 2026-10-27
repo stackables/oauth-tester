@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState, useCallback } from "react";
 import { z } from "zod";
 import { buttonVariants } from "@/components/ui/button";

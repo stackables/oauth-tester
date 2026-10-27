@@ -1,11 +1,7 @@
-"use client";
-
 import { useSessionStorage } from "@uidotdev/usehooks";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarImage } from "./ui/avatar";
-import dynamic from "next/dynamic";
 import { getTestUsers, jwtSign } from "@/lib/datagen";
 
 const domain =
@@ -46,7 +42,7 @@ async function fetchUserInfo(token: string) {
   return response.json();
 }
 
-function DemoWithDefaultUser() {
+export default function DemoWithDefaultUser() {
   const [token, setToken] = useState<{ id_token: string } | null>(null);
 
   useEffect(() => {
@@ -67,8 +63,7 @@ function Demo({ defaultToken }: { defaultToken: { id_token: string } | null }) {
   const [token, setToken] = useSessionStorage<
     { id_token: string } | false | undefined
   >("auth_demo", undefined);
-  const searchParams = useSearchParams();
-  const code = searchParams?.get("code");
+  const code = new URLSearchParams(window.location.search).get("code");
   const [info, setInfo] = useState<Record<string, string>>();
 
   const tokenWithFallback = token === undefined ? defaultToken : token;
@@ -172,7 +167,3 @@ function Demo({ defaultToken }: { defaultToken: { id_token: string } | null }) {
     </div>
   );
 }
-
-export default dynamic(() => Promise.resolve(DemoWithDefaultUser), {
-  ssr: false,
-});

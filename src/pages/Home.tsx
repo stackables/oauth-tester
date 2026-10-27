@@ -1,10 +1,12 @@
+import { lazy, Suspense } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import Demo from "@/components/Demo";
 import { CopyToClipboard } from "@/components/CopyToClipboard";
 import { Faq1 } from "@/components/FAQ";
 import { USPs } from "@/components/USPs";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { FeedbackWidget } from "@/components/FeedbackWidget";
+
+const Demo = lazy(() => import("@/components/Demo"));
 
 const domain = "https://oauth.sdk42.com";
 
@@ -84,7 +86,9 @@ export default function Route() {
                 DEMO
               </div>
               <CardContent className="h-full">
-                <Demo />
+                <Suspense>
+                  <Demo />
+                </Suspense>
               </CardContent>
             </Card>
           </div>
