@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && wrangler deploy --config dist/oauth_tester/wrangler.json",
+    "deploy": "vite build && wrangler deploy",
     "typecheck": "tsc && tsc -p api",
     "knip": "knip"
   },
