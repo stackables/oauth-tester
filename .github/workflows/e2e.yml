@@ -21,6 +21,8 @@ jobs:
           node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm knip
+      - run: pnpm knip --production
       # ubuntu-latest already has the browser's system libraries; --with-deps would apt-get them again, which some runs
       # take over ten minutes to do
       - run: pnpm exec playwright install chromium
