@@ -37,11 +37,11 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.1.2",
-    "knip": "6.42.1",
+    "knip": "6.44.1",
     "tailwindcss": "^4.1.18",
     "typescript": "^7.0.2",
     "vite": "^8.3.4",
     "wrangler": "^4.151.2"
   },
-  "packageManager": "pnpm@12.14.0"
+  "packageManager": "pnpm@12.18.0"
 }
